@@ -62,6 +62,8 @@ vim auto complete popup
 lua-support
 
 clang_complete
+
+cvim
 HowTo
 ---
 :TlistToggle
