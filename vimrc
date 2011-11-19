@@ -85,3 +85,11 @@ let g:Lua_AuthorRef       = 'lhx'
 let g:Lua_Email           = 'lihe757@gmail.com'            
 let g:Lua_Company         = 'KongZhong corporation'    
 
+"Use emacs style key binding on i mode
+imap <C-F> <RIGHT>
+imap <C-B> <LEFT>
+imap <C-E> <END>
+imap <C-A> <HOME>
+imap <C-D> <DELETE>
+imap <C-A> <ESC>dd
+
