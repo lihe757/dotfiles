@@ -96,7 +96,21 @@ tsz() {
 } 
 
 
+towk() {
+    cd ~/Documents/NinjaChicken2-cross/;
+    return 0;
+}
 
+towka() {
+    cd ~/Documents/NinjaChicken2-cross/proj.android.workspace/NinjiaChicken2/jni;
+    return 0;
+}
+
+proxy() {
+    cd /Volumes/home/localproxy-2.0.0/;
+    python ./proxy.py;
+    return 0;
+}
 
 semacs(){
     /Applications/Emacs.app/Contents/MacOS/Emacs --daemon;
