@@ -59,6 +59,7 @@ fugitive Git Plugin
 
 vim auto complete popup
 
+lua-support
 HowTo
 ---
 :TlistToggle
