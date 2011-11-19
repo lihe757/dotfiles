@@ -1,8 +1,8 @@
 export PATH=$PATH:$HOME/go/bin/:$HOME/.dotfiles/bin/
 export GOBIN=$HOME/go/bin/
 export GOROOT=$HOME/go/
-export GOOS=darwin
-export GOARCH=amd64
+export GOOS=linux
+export GOARCH=i386
 export EDITOR=vim
 
 #git aliases

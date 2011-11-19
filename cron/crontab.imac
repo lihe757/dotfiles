@@ -1,5 +1,5 @@
 SHELL=/bin/bash
-HOME=/Users/michael
-PATH=/usr/bin:/Users/michael/.dotfiles/bin:/bin
+HOME=/Users/lihex
+PATH=/usr/bin:/Users/lihex/.dotfiles/bin:/bin
 
 0 * * * * proremote
