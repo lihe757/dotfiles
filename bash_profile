@@ -5,7 +5,7 @@ ANDROID_NDK_ROOT=/Developer/Android/android-ndk-r5c
 export ANDROID_NDK_ROOT
 ANDROID_SDK_ROOT=/Developer/Android/android-sdk-mac_x86
 export ANDROID_SDK_ROOT
-export GOROOT=/Volumes/home/code/go
+#export GOROOT=/Volumes/home/code/go
 export GOROOT=/usr/local/Cellar/go/r60.3
 export GOARCH=amd64
 export GOOS=darwin

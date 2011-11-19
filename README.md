@@ -59,6 +59,7 @@ fugitive Git Plugin
 
 vim auto complete popup
 
+lua-support
 HowTo
 ---
 :TlistToggle
@@ -73,4 +74,4 @@ ln -s ~/.dotfiles/vimrc .vimrc
 
 ln -s ~/.dotfiles/vim .vim
 
-ln -s ~/.dofiles/todotxt/todo.cfg todo.cfg
+#ln -s ~/.dofiles/todotxt/todo.cfg todo.cfg

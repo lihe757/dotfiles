@@ -1,7 +1,7 @@
 "Michael Crosby crosbymichael.com
 syntax on
 set number
-colorscheme slate
+"colorscheme slate
 set tabstop=4
 set shiftwidth=4
 set nocompatible
@@ -77,3 +77,11 @@ nnoremap <F7> :helptags ~/.vim/doc<CR>
 
 "OmniComplete 
 inoremap <Nul> <C-x><C-o>
+
+
+"lua set
+let g:Lua_AuthorName      = 'lihex'     
+let g:Lua_AuthorRef       = 'lhx'                         
+let g:Lua_Email           = 'lihe757@gmail.com'            
+let g:Lua_Company         = 'KongZhong corporation'    
+
