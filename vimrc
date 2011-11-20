@@ -93,3 +93,8 @@ imap <C-A> <HOME>
 imap <C-D> <DELETE>
 imap <C-A> <ESC>dd
 
+"a.vim key binding
+noremap \a  :A<CR>
+inoremap \a <C-C>:A<CR>
+
+
