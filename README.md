@@ -64,6 +64,8 @@ lua-support
 clang_complete
 
 cvim
+
+a.vim
 HowTo
 ---
 :TlistToggle
