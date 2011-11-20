@@ -66,6 +66,8 @@ clang_complete
 cvim
 
 a.vim
+
+bash-support
 HowTo
 ---
 :TlistToggle
