@@ -74,6 +74,9 @@
 :TlistUndebug	taglist.txt	/*:TlistUndebug*
 :TlistUnlock	taglist.txt	/*:TlistUnlock*
 :TlistUpdate	taglist.txt	/*:TlistUpdate*
+AS	alternate.txt	/*AS*
+AT	alternate.txt	/*AT*
+AV	alternate.txt	/*AV*
 ExtractSnips()	snipMate.txt	/*ExtractSnips()*
 ExtractSnipsFile()	snipMate.txt	/*ExtractSnipsFile()*
 Filename()	snipMate.txt	/*Filename()*
@@ -155,6 +158,14 @@ acp-snipMate	acp.txt	/*acp-snipMate*
 acp-thanks	acp.txt	/*acp-thanks*
 acp-usage	acp.txt	/*acp-usage*
 acp.txt	acp.txt	/*acp.txt*
+alternate	alternate.txt	/*alternate*
+alternate-acknowledgments	alternate.txt	/*alternate-acknowledgments*
+alternate-commands	alternate.txt	/*alternate-commands*
+alternate-config	alternate.txt	/*alternate-config*
+alternate-installation	alternate.txt	/*alternate-installation*
+alternate-purpose	alternate.txt	/*alternate-purpose*
+alternate-support	alternate.txt	/*alternate-support*
+alternate.txt	alternate.txt	/*alternate.txt*
 autocomplpop	acp.txt	/*autocomplpop*
 c-support	csupport.txt	/*c-support*
 clang_complete	clang_complete.txt	/*clang_complete*
