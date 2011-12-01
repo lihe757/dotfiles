@@ -1,7 +1,7 @@
 "Michael Crosby crosbymichael.com
 syntax on
 set number
-"colorscheme slate
+colorscheme slate
 set tabstop=4
 set shiftwidth=4
 set nocompatible
