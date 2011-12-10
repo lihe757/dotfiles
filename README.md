@@ -68,6 +68,8 @@ cvim
 a.vim
 
 bash-support
+
+zencoding
 HowTo
 ---
 :TlistToggle
