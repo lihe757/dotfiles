@@ -70,6 +70,8 @@ a.vim
 bash-support
 
 zencoding
+
+tagbar
 HowTo
 ---
 :TlistToggle
