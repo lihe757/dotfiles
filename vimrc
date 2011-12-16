@@ -65,7 +65,8 @@ nnoremap m-2<cr> :m-2
 "NerdTree Toggle
 nnoremap <F3> :NERDTreeToggle<CR>
 "Ctags toggle
-nnoremap <F4> :Tlist<CR>
+"nnoremap <F4> :Tlist<CR>
+nmap <F4> :TagbarToggle<CR>
 "Generate ctags
 nnoremap <F8> :!ctags -R --python-kinds=-i *.py<CR>
 "Run scripts
