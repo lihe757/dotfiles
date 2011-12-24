@@ -98,4 +98,6 @@ imap <C-A> <ESC>dd
 noremap \a  :A<CR>
 inoremap \a <C-C>:A<CR>
 
+"rsense
+let g:resenseHome = "$RSENSE_HOME"
 
