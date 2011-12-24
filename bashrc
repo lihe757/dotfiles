@@ -5,7 +5,7 @@ export GOOS=linux
 export GOARCH=i386
 export EDITOR=vim
 
-export RSENSE_HOME=$HOME/.dotfiles//rsense
+export RSENSE_HOME=$HOME/.dotfiles/rsense
 
 #git aliases
 alias gs='git status'

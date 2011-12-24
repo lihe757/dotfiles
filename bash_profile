@@ -11,7 +11,7 @@ export GOARCH=amd64
 export GOOS=darwin
 export PATH=$PATH:$GOROOT/bin
 
-export RSENSE_HOME=$HOME/.dotfiles//rsense
+export RSENSE_HOME=$HOME/.dotfiles/rsense
 
 alias ctags='/usr/local/Cellar/ctags/5.8/bin/ctags'
 export PATH=$PATH:$HOME/.dotfiles/bin
