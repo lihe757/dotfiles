@@ -72,6 +72,10 @@ bash-support
 zencoding
 
 tagbar
+
+vimdoc-chinese
+
+rsense
 HowTo
 ---
 :TlistToggle
