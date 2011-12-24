@@ -12,5 +12,7 @@ ln -s $HOME/.dotfiles/git/gitignore $HOME/.gitignore
 echo "Setup bash configs..."
 ln -s $HOME/.dotfiles/bash_profile $HOME/.bash_profile
 #ln -s $HOME/.dotfiles/todotxt/todo.cfg $HOME/todo.cfg
+echo "Setup rsense configs..."
+ruby  $HOME/.dotfiles/rsense/etc/config.rb > ~/.rsense
 
 echo "Remember to restart your bash session for the changes to appear."

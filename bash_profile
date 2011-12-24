@@ -11,6 +11,8 @@ export GOARCH=amd64
 export GOOS=darwin
 export PATH=$PATH:$GOROOT/bin
 
+export RSENSE_HOME=$HOME/.dotfiles//rsense
+
 alias ctags='/usr/local/Cellar/ctags/5.8/bin/ctags'
 export PATH=$PATH:$HOME/.dotfiles/bin
 
@@ -97,12 +99,12 @@ tsz() {
 
 
 towk() {
-    cd ~/Documents/NinjaChicken2-cross/;
+    cd ~/Documents/;
     return 0;
 }
 
 towka() {
-    cd ~/Documents/NinjaChicken2-cross/proj.android.workspace/NinjiaChicken2/jni;
+    cd ~/Documents/;
     return 0;
 }
 
@@ -120,5 +122,33 @@ semacs(){
 cemacs() {
     /Applications/Emacs.app/Contents/MacOS/bin/emacsclient ${1};
     return 0;
+}
+
+ebash(){
+    vim ~/.bash_profile;
+    return 0;
+}
+
+sbash(){
+    source ~/.bash_profile;
+    return 0;
+}
+
+repacker(){
+    cd $1;
+    cp /Users/lihex/Devtools/TexturePR/unpack.py ./;
+    cp /Users/lihex/Devtools/TexturePR/repack.py ./;
+    python unpack.py $2.plist;
+    mv $2.atlas $2.combines;
+    for f in *.png; do
+        echo "Processing $f file..."
+        if [[ "${f}" != "$2.png" ]]; then
+            cp "${f}"  "$2.combines/"
+        fi
+     done
+     python repack.py $2.plist
+#     rm -rf $2.combines
+     cd -;
+     return 0;
 }
 

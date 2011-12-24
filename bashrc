@@ -5,6 +5,8 @@ export GOOS=linux
 export GOARCH=i386
 export EDITOR=vim
 
+export RSENSE_HOME=$HOME/.dotfiles//rsense
+
 #git aliases
 alias gs='git status'
 alias gmt='git mergetool'
@@ -38,3 +40,18 @@ alias tol='todo ls'
 alias toa='todo a'
 alias tod='todo do'
 
+ebash(){
+    vim ~/.bashrc;
+    return 0;
+}
+
+sbash(){
+    source ~/.bashrc;
+    return 0;
+}
+
+proxy() {
+    cd /Volumes/home/localproxy-2.0.0/;
+    python ./proxy.py;
+    return 0;
+}
