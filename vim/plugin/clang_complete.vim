@@ -76,7 +76,7 @@ function! s:ClangCompleteInit()
   endif
 
   if !exists('g:clang_auto_user_options')
-    let g:clang_auto_user_options = 'path, .clang_complete'
+    let g:clang_auto_user_options = 'path, .clang_complete, gcc'
   endif
 
   call LoadUserOptions()
@@ -166,6 +166,9 @@ function! LoadUserOptions()
       call s:parsePathOption()
     elseif l:source == '.clang_complete'
       call s:parseConfig()
+    else
+      let l:getopts = 'getopts#' . l:source . '#getopts'
+      silent call eval(l:getopts . '()')
     endif
   endfor
 endfunction
@@ -176,17 +179,23 @@ function! s:parseConfig()
     return
   endif
 
+  let l:root = substitute(fnamemodify(l:local_conf, ':p:h'), '\', '/', 'g')
+
   let l:opts = readfile(l:local_conf)
   for l:opt in l:opts
-    " Better handling of absolute path
-    " I don't know if those pattern will work on windows
-    " platform
+    " Use forward slashes only
+    let l:opt = substitute(l:opt, '\', '/', 'g')
+    " Handling of absolute path
     if matchstr(l:opt, '\C-I\s*/') != ''
       let l:opt = substitute(l:opt, '\C-I\s*\(/\%(\w\|\\\s\)*\)',
             \ '-I' . '\1', 'g')
+    " Check for win32 is enough since it's true on win64
+    elseif has('win32') && matchstr(l:opt, '\C-I\s*[a-zA-Z]:/') != ''
+      let l:opt = substitute(l:opt, '\C-I\s*\([a-zA-Z:]/\%(\w\|\\\s\)*\)',
+            \ '-I' . '\1', 'g')
     else
-      let l:opt = substitute(l:opt, '\C-I\s*\(\%(\w\|\\\s\)*\)',
-            \ '-I' . l:local_conf[:-16] . '\1', 'g')
+      let l:opt = substitute(l:opt, '\C-I\s*\(\%(\w\|\.\|/\|\\\s\)*\)',
+            \ '-I' . l:root . '/\1', 'g')
     endif
     let b:clang_user_options .= ' ' . l:opt
   endfor
@@ -323,7 +332,7 @@ endfunction
 function! s:ClangUpdateQuickFix(clang_output, tempfname)
   let l:list = []
   for l:line in a:clang_output
-    let l:erridx = match(l:line, '\%(error\|warning\): ')
+    let l:erridx = match(l:line, '\%(error\|warning\|note\): ')
     if l:erridx == -1
       " Error are always at the beginning.
       if l:line[:11] == 'COMPLETION: ' || l:line[:9] == 'OVERLOAD: '
@@ -345,10 +354,14 @@ function! s:ClangUpdateQuickFix(clang_output, tempfname)
       let l:text = l:line[l:erridx + 7:]
       let l:type = 'E'
       let l:hlgroup = ' SpellBad '
-    else
+    elseif l:line[l:erridx] == 'w'
       let l:text = l:line[l:erridx + 9:]
       let l:type = 'W'
       let l:hlgroup = ' SpellLocal '
+    else
+      let l:text = l:line[l:erridx + 6:]
+      let l:type = 'I'
+      let l:hlgroup = ' '
     endif
     let l:item = {
           \ 'bufnr': l:bufnr,
@@ -358,7 +371,7 @@ function! s:ClangUpdateQuickFix(clang_output, tempfname)
           \ 'type': l:type }
     let l:list = add(l:list, l:item)
 
-    if g:clang_hl_errors == 0 || l:fname != '%'
+    if g:clang_hl_errors == 0 || l:fname != '%' || l:type == 'I'
       continue
     endif
 
@@ -453,6 +466,9 @@ function! s:ClangCompleteBinary(base)
       endif
 
       let l:word = l:wabbr
+      let l:menu = substitute(l:proto, '\[#\([^#]*\)#\]', '\1 ', 'g')
+      let l:menu = substitute(l:menu, '<#\([^#]*\)#>', '\1', 'g')
+      let l:menu = substitute(l:menu, '{#[^#]*#}', '', 'g')
 
       let l:proto = s:DemangleProto(l:proto)
 
@@ -465,7 +481,7 @@ function! s:ClangCompleteBinary(base)
       let l:word = substitute(l:value, '.*<#', '<#', 'g')
       let l:word = substitute(l:word, '#>.*', '#>', 'g')
       let l:wabbr = substitute(l:word, '<#\([^#]*\)#>', '\1', 'g')
-      let l:proto = l:value
+      let l:menu = l:wabbr
       let l:proto = s:DemangleProto(l:value)
       let l:kind = ''
     else
@@ -487,7 +503,7 @@ function! s:ClangCompleteBinary(base)
     let l:item = {
           \ 'word': l:word,
           \ 'abbr': l:wabbr,
-          \ 'menu': l:proto,
+          \ 'menu': l:menu,
           \ 'info': l:proto,
           \ 'dup': 0,
           \ 'kind': l:kind,
