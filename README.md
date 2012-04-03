@@ -10,12 +10,14 @@ Gmail backups
 
 Prereq
 ---
-port install ctags
+Using brew to install Exuberant Ctags 
+        brew install ctags
 
-Compile vim for python
+Download [MacVim](https://github.com/b4winckler/macvim)
 
 For web.py
-easy_install web
+
+        easy_install web
 
 Add .dotfiles/bin to your PATH
 
@@ -76,18 +78,24 @@ tagbar
 vimdoc-chinese
 
 rsense
+
 HowTo
 ---
 :TlistToggle
 :NERDTreeToggle
 :helptags ~/.vim/doc/
 
-System links
+Configs
 ---
-ln -s ~/.dotfiles/git/gitconfig .gitconfig
 
-ln -s ~/.dotfiles/vimrc .vimrc
+Mac
 
-ln -s ~/.dotfiles/vim .vim
+        ln -s ~/.dotfiles/bash_profile
+        ln -s ~/.dotfiles/vimrc .vimrc
+        ln -s ~/.dotfiles/vim .vim
 
-#ln -s ~/.dofiles/todotxt/todo.cfg todo.cfg
+Linux
+        ln -s ~/.dotfiles/bash_profile
+        ln -s ~/.dotfiles/vimrc .vimrc
+        ln -s ~/.dotfiles/vim .vim
+
