@@ -1,16 +1,11 @@
 ##Changes
-Added my cron tab for osx to the cron folder
 
-Added setup scripts to system link the dotfiles configs to your home dir.  Make sure you backup and remove the files in the setup scripts before running them or it will not work.  
-
-##Automation
-Rsync to USB drive
-Rsync to server for projects
-Gmail backups
+Make sure you backup and remove the files in the setup scripts before running them or it will not work.  
 
 Prereq
 ---
 Using brew to install Exuberant Ctags 
+
         brew install ctags
 
 Download [MacVim](https://github.com/b4winckler/macvim)
@@ -95,6 +90,7 @@ Mac
         ln -s ~/.dotfiles/vim .vim
 
 Linux
+
         ln -s ~/.dotfiles/bash_profile
         ln -s ~/.dotfiles/vimrc .vimrc
         ln -s ~/.dotfiles/vim .vim
