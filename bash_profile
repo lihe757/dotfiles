@@ -76,27 +76,17 @@ alias tod='todo do'
 ##rvm
 [[ -s "/Users/lihex/.rvm/scripts/rvm" ]] && source "/Users/lihex/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
-##Myfunctions
-ts() {  
-           wget -qO- "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=$1&langpair=${2:-en}|${3:-zh}" | sed -E -n 's/[[:alnum:]": {}]+"translatedText":"([^"]+)".*/\1/p';   
-#    wget -qO- "http://fanyi.youdao.com/translate?i=$1&keyfrom=dict.top" | sed -E -n 's/.*tgt":"([^"]+)".*/\1/p'; 
-#    wget --post-data="type=AUTO& i=$1&doctype=json&xmlVersion=1.4&keyfrom=fanyi.web&ue=UTF-8&typoResult=true&flag=false" \
-#        -qO- \
-#        "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=dict.top" \
-#        | sed -E -n 's/.*tgt":"([^"]+)".*/\1/p';
-# 
-#    return 0;  
-}  
+##A english translate tool
+ts(){
 
-tsz() {  
-    #        wget -qO- "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=$1&langpair=${2:-zh}|${3:-en}" | sed -E -n 's/[[:alnum:]": {}]+"translatedText":"([^"]+)".*/\1/p';   
-    wget --post-data="type=AUTO& i=$1&doctype=json&xmlVersion=1.4&keyfrom=fanyi.web&ue=UTF-8&typoResult=true&flag=false" \
-        -qO- \
-        "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=dict.top" \
-        | sed -E -n 's/.*tgt":"([^"]+)".*/\1/p';
-    return 0;  
-} 
+    curl -s \
+            "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=dict.top" \
+                 -d \
+                    "type=AUTO& i=$1&doctype=json&xmlVersion=1.4&keyfrom=fanyi.web&ue=UTF-8&typoResult=true&flag=false" \
+                            | sed -E -n 's/.*tgt":"([^"]+)".*/\1/p' ;
 
+                            return 0;
+}
 
 towk() {
     cd ~/Documents/;

@@ -55,3 +55,15 @@ proxy() {
     python ./proxy.py;
     return 0;
 }
+
+ts(){
+
+    curl -s \
+            "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=dict.top" \
+                 -d \
+                    "type=AUTO& i=$1&doctype=json&xmlVersion=1.4&keyfrom=fanyi.web&ue=UTF-8&typoResult=true&flag=false" \
+                            | sed -r -n 's/.*tgt":"([^"]+)".*/\1/p' ;
+
+                            return 0;
+}
+
