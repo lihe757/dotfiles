@@ -67,8 +67,9 @@ nnoremap <F3> :NERDTreeToggle<CR>
 "Ctags toggle
 "nnoremap <F4> :Tlist<CR>
 nmap <F4> :TagbarToggle<CR>
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 "Generate ctags
-nnoremap <F8> :!ctags -R --python-kinds=-i *.py<CR>
+nnoremap <F8> :!/usr/local/bin/ctags -R --python-kinds=-i *.py<CR>
 "Run scripts
 nmap <F5> :call Run(&ft)<CR>
 "Task List toggle
