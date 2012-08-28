@@ -64,17 +64,12 @@ nnoremap m-2<cr> :m-2
 
 "NerdTree Toggle
 nnoremap <F3> :NERDTreeToggle<CR>
+
 "Ctags toggle
-"nnoremap <F4> :Tlist<CR>
 nmap <F4> :TagbarToggle<CR>
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-"Generate ctags
-nnoremap <F8> :!/usr/local/bin/ctags -R --python-kinds=-i *.py<CR>
-"Run scripts
-nmap <F5> :call Run(&ft)<CR>
-"Task List toggle
-nmap <F6> :TaskList<CR>
-"Objective syntax
+
+"update help doc
 nnoremap <F7> :helptags ~/.vim/doc<CR>
 
 "OmniComplete 
@@ -82,10 +77,10 @@ inoremap <Nul> <C-x><C-o>
 
 
 "lua set
-let g:Lua_AuthorName      = 'lihex'     
-let g:Lua_AuthorRef       = 'lhx'                         
-let g:Lua_Email           = 'lihe757@gmail.com'            
-let g:Lua_Company         = 'KongZhong corporation'    
+let g:Lua_AuthorName      = 'your name'     
+let g:Lua_AuthorRef       = 'yourname'                         
+let g:Lua_Email           = 'yourmail@yourmail.com'            
+let g:Lua_Company         = 'your company'    
 
 "Use emacs style key binding on i mode
 imap <C-F> <RIGHT>
@@ -93,12 +88,11 @@ imap <C-B> <LEFT>
 imap <C-E> <END>
 imap <C-A> <HOME>
 imap <C-D> <DELETE>
-imap <C-A> <ESC>dd
 
 "a.vim key binding
 noremap \a  :A<CR>
 inoremap \a <C-C>:A<CR>
 
 "rsense
-let g:resenseHome = "$RSENSE_HOME"
+let g:resenseHome = '~/.vim/resense'
 

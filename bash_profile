@@ -1,11 +1,15 @@
-export PATH=$PATH:/Developer/Android/android-ndk-r5c
-export PATH=$PATH:/Developer/Android/android-sdk-mac_x86/tools
-export PATH=$PATH:/Developer/Android/android-sdk-mac_x86/platform-tools
-ANDROID_NDK_ROOT=/Developer/Android/android-ndk-r5c
-export ANDROID_NDK_ROOT
-ANDROID_SDK_ROOT=/Developer/Android/android-sdk-mac_x86
-export ANDROID_SDK_ROOT
-#export GOROOT=/Volumes/home/code/go
+source /usr/local/etc/bash_completion.d/git-completion.bash
+export PATH=/usr/local/Cellar/ruby/1.9.3-p194/bin:$PATH
+export PATH=$PATH:/usr/local/cuda/bin
+export PATH=$PATH:/usr/local/sbin
+export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
+export PATH=/usr/local/bin:$PATH
+export NODE_PATH=/usr/local/lib/node_module
+export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r20.0.1
+export ANDROID_NDK_ROOT=/usr/local/Cellar/android-ndk/r8b
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+
 export GOROOT=/usr/local/Cellar/go/r60.3
 export GOARCH=amd64
 export GOOS=darwin
@@ -73,20 +77,36 @@ alias tod='todo do'
 #echo ""
 
 
-##rvm
-[[ -s "/Users/lihex/.rvm/scripts/rvm" ]] && source "/Users/lihex/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-
 ##A english translate tool
 ts(){
 
-    curl -s \
-            "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=dict.top" \
-                 -d \
-                    "type=AUTO& i=$1&doctype=json&xmlVersion=1.4&keyfrom=fanyi.web&ue=UTF-8&typoResult=true&flag=false" \
-                            | sed -E -n 's/.*tgt":"([^"]+)".*/\1/p' ;
+words=""
+for word in $@; 
+do
+    words="$words$word "
+done
 
-                            return 0;
+curl -s \
+        "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=dict.top" \
+     -d \
+	"type=AUTO& i=$words&doctype=json&xmlVersion=1.4&keyfrom=fanyi.web&ue=UTF-8&typoResult=true&flag=false" \
+        | gsed -r -n 's/.*tgt":"([^"]+)".*/\1/p' ;
+
+return 0;
 }
+
+#tss(){
+#result=`curl -s \
+#        "http://fanyi.youdao.com/fanyiapi.do?keyfrom=HaloWordDictionary&key=1311342268&type=data&doctype=json&version=1.1&q=$1" `;
+#
+#echo $result | sed -E 's/.*etic":(.*),"exp.*/\1/g' 
+#echo $result | sed -E 's/.*explains":([^\}]+)\}.*/\1/g'  | sed -E 's/"|\[|\]//g'  | sed -E 's/,//g'
+#
+#    audio="http://www.gstatic.com/dictionary/static/sounds/de/0/$1.mp3"
+#    mpg123 -q $audio 
+#return 0;
+#
+#}
 
 towk() {
     cd ~/Documents/;
@@ -142,3 +162,38 @@ repacker(){
      return 0;
 }
 
+proxy(){
+    cd ~/Downloads/goagent/local/;
+    python proxy.py;
+}
+
+# Mac Version
+# notic: ^M^L = Ctrl+v Ctrl+Enter Ctrl+v Ctrl+l
+tss(){
+result=`curl -s \
+        "http://dict-co.iciba.com/api/dictionary.php?w=$1" `;
+
+echo $result | sed -E -n 's/.*<ps>([^<]+)<\/ps>.*/\1/p'; 
+echo $result | sed -E -n 's/.*<pos>([^<]+)<\/pos>.*/\1/p'; 
+echo $result | sed -E -n 's/.*<acceptation>([^<]+)<\/acceptation>.*/\1/p'; 
+
+#examples
+echo $result \
+    | sed 's/.*<\/acceptation>//g' \
+    | sed 's/<trans>//g' \
+    | sed 's/<orig>//g' \
+    | sed 's/<[^<>]*>//g' ;
+
+#Evaluate whether audio information
+is_empty=`echo $result | grep pron`
+if [ "$is_empty" ]; then
+    audio=`echo $result |sed -E 's/.*<pron>([^<]+)<\/pron>.*/\1/'`
+    mpg123 -q $audio &
+fi
+
+return 0;
+
+}
+
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init -)"

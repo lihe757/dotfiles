@@ -1,22 +1,10 @@
 [user]
-	name = lihex
-	email = lihe757@gmail.com
-
+    name =  lihex
+    email = lihe757@gmail.com 
 [alias]
-	st = status
-	co = checkout
-	br = branch
-	ca = commit -a
-	ga = add .
-	lg = log --graph
-	undo = reset --hard
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 [color]
-	ui = true
-[core]
-	excludesfile = /Users/lihex/.gitignore_global
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
